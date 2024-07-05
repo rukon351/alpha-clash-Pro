@@ -8,7 +8,12 @@
 // }
 
 function handleKeyboarKeyUpPress(event) {
-    const playerPessed = event.key;
+    const playerPressed = event.key;
+
+    //stop the game if pressed 'Esc'
+    if (playerPressed === 'Escape') {
+        gameOver();
+    }
 
     // key player is expected to press
     const currentAlphabetElement = document.getElementById('current-alphabet');
@@ -16,7 +21,7 @@ function handleKeyboarKeyUpPress(event) {
     const expectedAlphabet = currentAlphabet.toLowerCase();
 
     // check right or wrong key pressed
-    if (playerPessed === expectedAlphabet) {
+    if (playerPressed === expectedAlphabet) {
         // console.log('you get a point');
 
         const currentScore = getTextElementValueById('current-score');
@@ -105,5 +110,9 @@ function gameOver() {
     // update final scoreeeeee
     const lastScore = getTextElementValueById('current-score');
     setTextElementValueById('last-score', lastScore);
+
+    // clear the last selected alphabet highlight
+    const currentAlphabet = getElementTextById('current-alphabet');
+    removeBackgroundColorById(currentAlphabet);
 }
 
